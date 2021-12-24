@@ -9,12 +9,10 @@ public interface IEmployeePayrollService {
 	List<EmployeePayrollData> getEmployeePayrollData();
     EmployeePayrollData getEmployeePayrollDataById(int empId);
 	EmployeePayrollData createEmployeePayrollData(EmployeePayrollDTO empPayrollDTO);
-	EmployeePayrollData updateEmployeePayrollData(EmployeePayrollDTO empPayrollDTO);
+	EmployeePayrollData updateEmployeePayrollData(int empId, EmployeePayrollDTO empPayrollDTO);
     void deleteEmployeePayrollData(int empId);
-	/**
-	 * Call update method 
-	 * @return :  updated Employee details
-	 */
+	
+
 
 
 
