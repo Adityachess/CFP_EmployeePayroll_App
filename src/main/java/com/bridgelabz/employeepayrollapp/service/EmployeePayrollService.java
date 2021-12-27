@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.bridgelabz.employeepayrollapp.dto.EmployeePayrollDTO;
+import com.bridgelabz.employeepayrollapp.exception.EmployeePayrollException;
 import com.bridgelabz.employeepayrollapp.model.EmployeePayrollData;
 
 @Service
@@ -18,10 +19,13 @@ public class EmployeePayrollService implements IEmployeePayrollService {
 		return employeePayrollList;
 	}
 
+	
 	@Override
-	public EmployeePayrollData getEmployeePayrollDataById(int empId) {
-		return employeePayrollList.get(empId - 1);
-	}
+    public EmployeePayrollData getEmployeePayrollDataById(int empId) {
+        return employeePayrollList.stream().filter(empData -> empData.getEmployeeId() == empId)
+                .findFirst().orElseThrow(() -> new EmployeePayrollException("Employee Not found"));
+
+    }
 
 	@Override
 	public EmployeePayrollData createEmployeePayrollData(EmployeePayrollDTO empPayrollDTO) {
